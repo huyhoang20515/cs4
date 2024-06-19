@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+
+    static double ReadDouble()
+    {
+        double value;
+        while (true)
+        {
+            Console.Write("Nhap so thuc 8 byte (double): ");
+            if (double.TryParse(Console.ReadLine(), out value))
+            {
+                break;
+            }
+            Console.WriteLine("Gia tri khong hop le. Vui long nhap lai.");
+        }
+        return value;
+    }
+
+    static void Main(string[] args)
+    {
+
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        double x = ReadDouble();
+
+        double sqrtX = Math.Sqrt(x);
+        Console.WriteLine($"Gia tri can bac 2 cua {x} la: {sqrtX}");
+    }
+}
