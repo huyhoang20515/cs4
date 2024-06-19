@@ -1,0 +1,94 @@
+using System;
+
+class Program
+{
+   
+    static byte ReadByteInRange()
+    {
+        byte value;
+        while (true)
+        {
+            Console.Write("Nhap so nguyen khong dau trong khoang 2 den 10: ");
+            if (byte.TryParse(Console.ReadLine(), out value) && value >= 2 && value <= 10)
+            {
+                break;
+            }
+            Console.WriteLine("Gia tri khong hop le. Vui long nhap lai.");
+        }
+        return value;
+    }
+
+    static int ReadInt()
+    {
+        int value;
+        while (true)
+        {
+            Console.Write("Nhap so nguyen (int): ");
+            if (int.TryParse(Console.ReadLine(), out value))
+            {
+                break;
+            }
+            Console.WriteLine("Gia tri khong hop le. Vui long nhap lai.");
+        }
+        return value;
+    }
+
+    static int[,] ReadIntArray(int m, int n)
+    {
+        int[,] array = new int[m, n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write($"Nhap phan tu [{i},{j}]: ");
+                array[i, j] = ReadInt();
+            }
+        }
+        return array;
+    }
+
+    static int SumDivisibleBy(int[,] array, int p)
+    {
+        int sum = 0;
+        foreach (int value in array)
+        {
+            if (value % p == 0)
+            {
+                sum += value;
+            }
+        }
+        return sum;
+    }
+
+    static void Main(string[] args)
+    {
+
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        Console.WriteLine("Nhap gia tri cho m:");
+        byte m = ReadByteInRange();
+        Console.WriteLine($"Gia tri cua m: {m}");
+
+        Console.WriteLine("Nhap gia tri cho n:");
+        byte n = ReadByteInRange();
+        Console.WriteLine($"Gia tri cua n: {n}");
+
+        int[,] a = new int[m, n];
+
+        // Goi ham de nhap gia tri cac phan tu cua mang a tu ban phim
+        a = ReadIntArray(m, n);
+
+        Console.WriteLine("Gia tri cua mang a:");
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write($"{a[i, j]} ");
+            }
+            Console.WriteLine();
+        }
+
+        int sum = SumDivisibleBy(a, 2024);
+        Console.WriteLine($"Tong cac phan tu cua mang chia het cho 2024: {sum}");
+    }
+}
