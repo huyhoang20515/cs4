@@ -1,0 +1,64 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+
+    static byte ReadByteInRange()
+    {
+        byte value;
+        while (true)
+        {
+            Console.Write("Nhap so nguyen khong dau trong khoang 2 den 10: ");
+            if (byte.TryParse(Console.ReadLine(), out value) && value >= 2 && value <= 10)
+            {
+                break;
+            }
+            Console.WriteLine("Gia tri khong hop le. Vui long nhap lai.");
+        }
+        return value;
+    }
+
+    static float ReadFloat()
+    {
+        float value;
+        while (true)
+        {
+            Console.Write("Nhap so thuc (float): ");
+            if (float.TryParse(Console.ReadLine(), out value))
+            {
+                break;
+            }
+            Console.WriteLine("Gia tri khong hop le. Vui long nhap lai.");
+        }
+        return value;
+    }
+
+    static float[] ReadFloatArray(int n)
+    {
+        float[] array = new float[n];
+        for (int i = 0; i < n; i++)
+        {
+            array[i] = ReadFloat();
+        }
+        return array;
+    }
+
+    static void Main(string[] args)
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        
+        byte n = ReadByteInRange();
+        Console.WriteLine($"Gia tri cua n: {n}");
+
+        float[] a = new float[n];
+
+        a = ReadFloatArray(n);
+
+        Console.WriteLine("Gia tri cua mang a:");
+        for (int i = 0; i < a.Length; i++)
+        {
+            Console.WriteLine($"a[{i}] = {a[i]}");
+        }
+    }
+}
